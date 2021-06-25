@@ -37,10 +37,11 @@ public class Usuario implements Serializable {
 	private String email;
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "usuario_id"), 
-	inverseJoinColumns = @JoinColumn(name = "role_id"), 
-	uniqueConstraints = {@UniqueConstraint(columnNames = { "usuario_id", "role_id" }) })
+	@JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "role_id"), uniqueConstraints = {
+			@UniqueConstraint(columnNames = { "usuario_id", "role_id" }) })
 	private List<Role> roles;
+
+	private Integer intentos;
 
 	public List<Role> getRoles() {
 		return roles;
@@ -104,6 +105,14 @@ public class Usuario implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Integer getIntentos() {
+		return intentos;
+	}
+
+	public void setIntentos(Integer intentos) {
+		this.intentos = intentos;
 	}
 
 	private static final long serialVersionUID = 4002221912401133094L;
